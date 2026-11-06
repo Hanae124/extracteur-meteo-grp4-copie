@@ -16,9 +16,8 @@ then
 fi
 
 # Récupère les températures dans le fichier des donnees meteos
-tempActuelle=$(grep -m1 '"temp_C"' "$donnees_meteoVille" | sed 's/[^0-9\-]//g')
-tempDemain=$(grep -m1 '"avgtempC"' "$donnees_meteoVille" | sed 's/[^0-9\-]//g')
-
+tempActuelle=$(grep -m1 '"temp_C"' "$donnees_meteoVille" | cut -d'"' -f4)
+tempDemain=$(grep -m1 '"avgtempC"' "$donnees_meteoVille" | cut -d'"' -f4)
 if [ -z "$tempActuelle" ]; then
     tempActuelle="N/A"
     exit 3
